@@ -1,0 +1,126 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+
+/* Variables */
+
+:root {
+    --theme-dark-color: rgb(7, 56, 63);
+    --theme-light-color: rgb(179, 196, 193);
+    --button-main-color: rgb(212, 131, 0);
+    --button-pressed-color: var(--theme-dark-color);
+    --button-outline-color: rgba(212, 131, 0, 0.5);
+}
+
+/* Global styles */
+
+body {
+    background-color: var(--theme-light-color);
+    font-family: "Lato", sans-serif;
+    margin: 0;
+}
+
+header {
+    background-color: var(--theme-dark-color);
+    justify-content: flex-end;
+    height: 40px;
+    padding: 10px 12.5%;
+}
+
+.header-title {
+    margin-right: auto;
+    font-size: 36px;
+    color: white;
+}
+
+h2 {
+    margin: 0;
+}
+
+::selection {
+    background-color: rgba(117, 92, 148, 0.25);
+}
+
+/* Elements */
+
+.page-body {
+    background-color: white;
+    padding: 20px;
+    margin: 0px 12.5%;
+}
+
+.profile {
+    display: flex;
+    flex-flow: row;
+}
+
+.profile-picture {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+}
+
+.profile-text {
+    padding: 20px; 
+    font-size: 18px;
+}
+
+.container {
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+}
+
+.item {
+    background-color: white;
+    height: 300px;
+    display: flex;
+    flex-flow: row;
+    overflow: hidden;
+    border-radius: 10px; 
+    margin: 10px 0;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.5);
+}
+
+.slideshow {
+    background-color: rgba(0, 0, 0, 1);
+    height: inherit;
+    aspect-ratio: 16 / 9;
+}
+
+.slideshow:not(:first-child) {
+    display: none;
+}
+  
+.slide {
+    height: 100%;
+    margin:auto;
+}
+
+.game-info {
+    flex-grow: 1;
+    padding: 20px;
+    display: flex;
+    flex-flow: column;
+    justify-content: space-between;
+}
+
+.link-row {
+    display: flex;
+    flex-flow: row;
+    align-items: flex-end;
+    height: 40px;
+}
+
+.link-row a {
+    height: inherit;
+}
+
+.link-row a img {
+    display: block;
+    width: auto;
+    height: 100%;
+    margin-right: 10px;
+}
+
+.game-date {
+    margin-left: auto;
+}
