@@ -17,7 +17,7 @@ function appendContainerItems() {
 
         const article = document.createElement("a");
         article.classList.add("item");
-        let url = new URL("details.html", window.location.origin);
+        let url = new URL("details.html", window.location.href);
         url.searchParams.set('game', i);
         article.href = url.toString();
         
