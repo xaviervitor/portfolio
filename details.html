@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Details</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico?">
+    <script defer src="projects.js"></script>
+    <script defer src="details-script.js"></script>
+</head>
+
+<body>
+    <div class="page-body">
+        <header class="page-header card rounded">
+            <div class="button-row">
+                <a href="/" class="button-card">Home</a>
+                <!-- <a href="#" class="button-card">About</a> -->
+            </div>
+            <div class="image-button-row">
+                <a href="https://vitassos.itch.io/">
+                    <img src="icons/itchio.png"/>
+                </a>
+                <a href="https://github.com/xaviervitor/">
+                    <img src="icons/github.png"/>
+                </a>
+            </div>
+        </header>
+        <div class="card rounded margin-bottom">
+            <div class="card rounded margin-bottom">
+                <span id="span-title" class="title-text"></span>
+            </div>
+            <div class="overview-info margin-bottom">
+                <div class="card rounded margin-clear">
+                    <span class="strong-text">Summary: </span><span id="span-summary"></span>
+                    <br/>
+                    <span class="strong-text">Platforms: </span><span id="span-platforms"></span>
+                    <br/>
+                    <span class="strong-text">Tools/Languages: </span><span id="span-tools"></span>
+                    <br/>
+                    <span class="strong-text">Role: </span><span id="span-role"></span>
+                    <br/>
+                    <span class="strong-text">Duration: </span><span id="span-duration"></span>
+                    <br/>
+                    <span class="strong-text">Release Date: </span><span id="span-release"></span>
+                </div>
+                <div id="slide-show" class="slide-show details-img rounded"></div>
+            </div>
+            <div class="card rounded">
+                <div class="card-header">
+                    <span class="title-text">Overview</span>
+                    <span id="span-links" class="image-button-row">
+                    </span>
+                </div>
+                <div id="div-overview"></div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

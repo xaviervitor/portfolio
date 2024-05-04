@@ -1,126 +1,290 @@
-@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap');
 
 /* Variables */
 
 :root {
-    --theme-dark-color: rgb(7, 56, 63);
-    --theme-light-color: rgb(179, 196, 193);
-    --button-main-color: rgb(212, 131, 0);
-    --button-pressed-color: var(--theme-dark-color);
-    --button-outline-color: rgba(212, 131, 0, 0.5);
+    --text-size: 16px;
+    --medium-text-size: 18px;
+    --large-text-size: 28px;
+    --gap-size: 16px;
+    --background-color: rgb(37, 73, 40);
+    --selected-text-color: rgba(35, 102, 64, 0.25);
+
+    --card-color: rgba(255, 255, 255, 0.5);
+    --title-color: rgb(0, 0, 0);
+    --text-color: rgb(64, 64, 64);
+    --hyperlink-color: rgb(35, 102, 64);
+
+    --button-color: rgba(255, 255, 255, 0.5);
+    --button-hover-color: rgba(255, 255, 255, 0.66);
+    --button-active-color: rgba(255, 255, 255, 0.75);
 }
 
 /* Global styles */
 
 body {
-    background-color: var(--theme-light-color);
-    font-family: "Lato", sans-serif;
-    margin: 0;
+    background: var(--background-color);
+
+    background-image: url(images/foreground.png), url(images/background.png);
+    background-position: center center;
+    background-attachment: scroll;
+    image-rendering: crisp-edges;
+
+    font-family: "Titillium Web", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    
+    color: var(--text-color);
 }
 
-header {
-    background-color: var(--theme-dark-color);
-    justify-content: flex-end;
-    height: 40px;
-    padding: 10px 12.5%;
+a {
+    text-decoration: none;
+    font-weight: bold;
 }
 
-.header-title {
-    margin-right: auto;
-    font-size: 36px;
-    color: white;
+a:link {
+    color: var(--hyperlink-color);
 }
-
-h2 {
-    margin: 0;
+  
+a:visited {
+    color: var(--hyperlink-color);
 }
+  
+a:hover {
+    text-decoration: underline;
+}
+  
+a:active {
+    color: var(--hyperlink-color);
+} 
 
 ::selection {
-    background-color: rgba(117, 92, 148, 0.25);
+    background-color: var(--selected-text-color);
 }
 
 /* Elements */
 
+.margin-top {
+    margin-top: var(--gap-size);
+}
+
+.margin-bottom {
+    margin-bottom: var(--gap-size);
+}
+
+.margin-right {
+    margin-right: var(--gap-size);
+}
+
+.margin-left {
+    margin-left: var(--gap-size);
+}
+
+.margin-clear {
+    margin: 0;
+}
+
+.rounded {
+    border-radius: 10px;
+}
+
+.medium-text {
+    font-size: var(--medium-text-size);
+}
+
+.strong-text {
+    color: black;
+    font-weight: bold;
+}
+
+.accent-text {
+    color: var(--hyperlink-color);
+    font-weight: bold;
+}
+
 .page-body {
-    background-color: white;
-    padding: 20px;
-    margin: 0px 12.5%;
+    image-rendering: auto;
+    width: 900px;
+    margin: auto;
+}
+
+.card {
+    background-color: var(--card-color);
+    padding: var(--gap-size);
+    backdrop-filter: blur(16px);
+}
+
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: var(--gap-size) auto;
+}
+
+.page-footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: var(--gap-size) auto;
 }
 
 .profile {
     display: flex;
-    flex-flow: row;
+    background-color: var(--card-color);
+    overflow: hidden;
 }
 
-.profile-picture {
+.profile img {
+    flex-grow: 1;
     width: 180px;
     height: 180px;
-    border-radius: 50%;
 }
 
-.profile-text {
-    padding: 20px; 
-    font-size: 18px;
-}
-
-.container {
-    display: flex;
-    flex-flow: column;
-    justify-content: center;
-}
-
-.item {
-    background-color: white;
-    height: 300px;
-    display: flex;
-    flex-flow: row;
-    overflow: hidden;
-    border-radius: 10px; 
-    margin: 10px 0;
-    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.5);
-}
-
-.slideshow {
-    background-color: rgba(0, 0, 0, 1);
-    height: inherit;
-    aspect-ratio: 16 / 9;
-}
-
-.slideshow:not(:first-child) {
-    display: none;
-}
-  
-.slide {
-    height: 100%;
-    margin:auto;
-}
-
-.game-info {
+.profile div {
+    padding: var(--gap-size);
     flex-grow: 1;
-    padding: 20px;
     display: flex;
     flex-flow: column;
     justify-content: space-between;
 }
 
-.link-row {
+.container {
     display: flex;
-    flex-flow: row;
-    align-items: flex-end;
-    height: 40px;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    gap: var(--gap-size);
 }
 
-.link-row a {
+.item {
+    all: unset;
+    background-color: var(--button-color);
+    display: flex;
+    flex-flow: column;
+    flex-basis: calc(50% - (var(--gap-size) / 2));
+
+    cursor: pointer;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.item:link {
+    color: var(--text-color);
+}
+
+.item:visited {
+    color: var(--text-color);
+}
+
+.item:hover {
+    text-decoration: none;
+    background-color: var(--button-hover-color);
+    transition: background-color 0.125s linear;
+}
+
+.item:active {
+    background-color: var(--button-active-color);
+    transition: background-color 0.125s linear;
+}
+
+.slide-show {
+    aspect-ratio: 16/9;
+    width: 100%;
+    background-color: black;
+    overflow: hidden;
+}
+
+.slide-show img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: contain;
+}
+
+.slide-show img:not(:first-child) {
+    display: none;
+}
+
+.game-info {
+    flex-grow: 1;
+    padding: var(--gap-size);
+    display: flex;
+    flex-flow: column;
+    justify-content: space-between;
+    font-size: var(--text-size);
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.overview-info {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+}
+
+.title-text {
+    font-size: var(--large-text-size);
+    font-weight: bold;
+    color: var(--title-color);
+}
+
+.button-row {
+    display: flex;
+    gap: var(--gap-size);
+}
+
+.image-button-row {
+    display: flex;
+    align-items: flex-end;
+    height: 40px;
+    gap: var(--gap-size);
+}
+
+.image-button-row a {
     height: inherit;
 }
 
-.link-row a img {
+.image-button-row a img {
     display: block;
-    width: auto;
     height: 100%;
-    margin-right: 10px;
 }
 
 .game-date {
     margin-left: auto;
+}
+
+.details-img {
+    min-width: 60%;
+}
+
+.button-card {
+    all: unset;
+    text-decoration: none;
+    background-color: var(--button-color);
+    padding: calc(var(--gap-size) / 2);
+    height: inherit;
+    border-radius: 10px;
+    user-select: none;
+    cursor: pointer;
+}
+
+.button-card:link {
+    color: var(--text-color);
+}
+
+.button-card:visited {
+    color: var(--text-color);
+}
+
+.button-card:hover {
+    text-decoration: none;
+    background-color: var(--button-hover-color);
+    transition: background-color 0.125s linear;
+}
+
+.button-card:active {
+    background-color: var(--button-active-color);
+    transition: background-color 0.125s linear;
 }

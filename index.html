@@ -7,194 +7,52 @@
     <title>Portfolio</title>
     <link rel="stylesheet" href="style.css">
     <link rel="shortcut icon" type="image/x-icon" href="favicon.ico?">
+    <script defer src="projects.js"></script>
     <script defer src="script.js"></script>
 </head>
 
-<body>
-    <header class="link-row">
-        <span class="header-title"><b>Vitor Xavier (Game Programmer)</b></span>
-        <a href="https://www.linkedin.com/in/xaviervitor/">
-            <img src="icons/linkedin.png"/>
-        </a>
-        <a href="https://vitassos.itch.io/">
-            <img src="icons/itchio.png"/>
-        </a>
-        <a href="https://github.com/xaviervitor/">
-            <img src="icons/github-white.png"/>
-        </a>
-    </header>
+<body class="margin-clear">
     <div class="page-body">
-        <div class="profile">
-            <img class="profile-picture" src="images/profile-picture.jpg" />
-            <span class="profile-text">
-                <p>I'm Vitor, a brazilian game developer that really loves the craft.</p>
-                <p>This is my portfolio, where I talk about my game projects in more detail. Click on any card to read more about a project.</p>
-            </span>
+        <header class="page-header card rounded">
+            <div class="button-row">
+                <a href="#" class="button-card">Home</a>
+                <!-- <a href="#" class="button-card">About</a> -->
+            </div>
+            <div class="image-button-row">
+                <a href="https://vitassos.itch.io/">
+                    <img src="icons/itchio.png"/>
+                </a>
+                <a href="https://github.com/xaviervitor/">
+                    <img src="icons/github.png"/>
+                </a>
+            </div>
+        </header>
+        <div class="card rounded margin-bottom">
+            <div class="profile rounded margin-bottom">
+                <img src="images/profile-picture.jpg" />
+                <div>
+                    <span class="profile-text">
+                        <p class="margin-clear">
+                            I'm Vitor Xavier, a brazilian game developer and programmer.
+                            <br/>
+                            This is my portfolio, where I talk about my projects in more detail. Click on any project to read more about it.
+                        </p>
+                    </span>
+                    <span>
+                        <span class="accent-text">⛓</span>
+                        <a href="https://www.linkedin.com/in/xaviervitor/">linkedin.com/in/xaviervitor</a>
+                        <br/>
+                        <span class="accent-text">✉</span>
+                        <a href="mailto:xavier1vitor@gmail.com">xavier1vitor@gmail.com</a>
+                    </span>
+                </div>
+            </div>
+            <section id="projects-container" class="container"></section>
         </div>
-        <section class="container">
-            <article class="item">
-                <div class="slideshow">
-                    <img class="slide" src="images/kosmic-hunters/1.png">
-                    <img class="slide" src="images/kosmic-hunters/2.png">
-                    <img class="slide" src="images/kosmic-hunters/3.png">
-                    <img class="slide" src="images/kosmic-hunters/4.png">
-                </div>
-                <div class="game-info">
-                    <div>
-                        <h2>Kosmic Hunters</h2>
-                        <div>
-                            <p>A multiplayer first-person shooter built with unreal engine.</p>
-                            <p>It is playable in LAN, has four characters, three weapons and a map called Facility.</p>
-                            <p>I chose to code it all in C++ without using any game samples provided by the engine, to actually learn Unreal C++, only using blueprint to animation and UI logic.</p>
-                        </div>
-                    </div>
-                    <div class="link-row">
-                        <a href="https://vitassos.itch.io/kosmic-hunters">
-                            <img src="icons/itchio-badge.png"/>
-                        </a>
-                        <a href="https://github.com/xaviervitor/kosmichunters">
-                            <img src="icons/github.png"/>
-                        </a>
-                        <span class="game-date">
-                            24/04/2024
-                        </span>
-                    </div>
-                </div>
-            </article>
-            <article class="item">
-                <div class="slideshow">
-                    <img class="slide" src="images/opengl/1.png">
-                    <img class="slide" src="images/opengl/2.png">
-                    <img class="slide" src="images/opengl/3.png">
-                    <img class="slide" src="images/opengl/4.png">
-                </div>
-                <div class="game-info">
-                    <div>
-                        <h2>OpenGL Renderer</h2>
-                        <div>
-                            <p>My implementation of the chapters from the "LearnOpenGL" book, by JoeyDeVries.</p>
-                        </div>
-                    </div>
-                    <div class="link-row">
-                        <a href="https://github.com/xaviervitor/learnopengl">
-                            <img src="icons/github.png"/>
-                        </a>
-                        <span class="game-date">
-                            04/09/2023
-                        </span>
-                    </div>
-                </div>
-            </article>
-            <article class="item">
-                <div class="slideshow">
-                    <img class="slide" src="images/piratas/1.png">
-                    <img class="slide" src="images/piratas/2.png">
-                    <img class="slide" src="images/piratas/3.png">
-                </div>
-                <div class="game-info">
-                    <div>
-                        <h2>Piratas</h2>
-                        <div>
-                            <p>This is Piratas, a top-down pirate themed arcade shooter. Have fun destroying the pirates, keep moving and watch out for the ghost ship!</p>
-                        </div>
-                    </div>
-                    <div class="link-row">
-                        <a href="https://vitassos.itch.io/piratas">
-                            <img src="icons/itchio-badge.png"/>
-                        </a>
-                        <a href="https://github.com/xaviervitor/piratas">
-                            <img src="icons/github.png"/>
-                        </a>
-                        <span class="game-date">
-                            04/04/2023
-                        </span>
-                    </div>
-                </div>
-            </article>
-            <article class="item">
-                <div class="slideshow">
-                    <img class="slide" src="images/biomagnetic/1.png">
-                    <img class="slide" src="images/biomagnetic/2.png">
-                    <img class="slide" src="images/biomagnetic/3.png">
-                    <img class="slide" src="images/biomagnetic/4.png">
-                    <img class="slide" src="images/biomagnetic/5.png">
-                </div>
-                <div class="game-info">
-                    <div>
-                        <h2>Biomagnetic</h2>
-                        <div>
-                            <p>This is Biomagnetic, a First-Person Puzzle game about using magnetism to pull and hold heavy and far away objects to solve puzzles.</p>
-                            <p>Has keyboard/mouse input and gamepad input support.</p>
-                        </div>
-                    </div>
-                    <div class="link-row">
-                        <a href="https://vitassos.itch.io/biomagnetic">
-                            <img src="icons/itchio-badge.png"/>
-                        </a>
-                        <a href="https://github.com/xaviervitor/biomagnetic">
-                            <img src="icons/github.png"/>
-                        </a>
-                        <span class="game-date">
-                            20/01/2023
-                        </span>
-                    </div>
-                </div>
-            </article>
-            <article class="item">
-                <div class="slideshow">
-                    <img class="slide" src="images/godot-chess/1.png">
-                    <img class="slide" src="images/godot-chess/2.png">
-                </div>
-                <div class="game-info">
-                    <div>
-                        <h2>Godot Chess</h2>
-                        <div>
-                            <p>A chess game made from scratch using the Godot game engine.</p>
-                        </div>
-                    </div>
-                    <div class="link-row">
-                        <a href="https://vitassos.itch.io/godot-chess">
-                            <img src="icons/itchio-badge.png"/>
-                        </a>
-                        <a href="https://github.com/xaviervitor/godotchess">
-                            <img src="icons/github.png"/>
-                        </a>
-                        <span class="game-date">
-                            16/04/2021
-                        </span>
-                    </div>
-                </div>
-            </article>
-            <article class="item">
-                <div class="slideshow">
-                    <img class="slide" src="images/minejsweeper/1.png">
-                    <img class="slide" src="images/minejsweeper/2.png">
-                    <img class="slide" src="images/minejsweeper/3.png">
-                    <img class="slide" src="images/minejsweeper/4.png">
-                </div>
-                <div class="game-info">
-                    <div>
-                        <h2>Minejsweeper</h2>
-                        <div>
-                            <p>This is Minejsweeper, a minesweeper clone written in Javascript, HTML and CSS — using no graphics library or game engine, just HTML components.</p>
-                        </div>
-                    </div>
-                    <div class="link-row">
-                        <a href="https://vitassos.itch.io/minejsweeper">
-                            <img src="icons/itchio-badge.png"/>
-                        </a>
-                        <a href="https://github.com/xaviervitor/minejsweeper">
-                            <img src="icons/github.png"/>
-                        </a>
-                        <span class="game-date">
-                            16/04/2021
-                        </span>
-                    </div>
-                </div>
-            </article>
-        </section>
+        <!-- <footer class="page-footer card rounded">
+            
+        </footer> -->
     </div>
-    <footer class="links"></footer>
 </body>
 
 </html>
