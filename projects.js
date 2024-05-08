@@ -7,10 +7,10 @@ const projects = [
         "role" : "Programming, Level Design / Environment Art, 3D Modeling (level props)",
         "duration" : "6 months",
         "imagePaths" : [
-            "images/kosmic-hunters/1.png",
-            "images/kosmic-hunters/2.png",
-            "images/kosmic-hunters/3.png",
-            "images/kosmic-hunters/4.png",
+            "projects/kosmic-hunters/slides/1.png",
+            "projects/kosmic-hunters/slides/2.png",
+            "projects/kosmic-hunters/slides/3.png",
+            "projects/kosmic-hunters/slides/4.png",
         ],
         "links" : [
             {
@@ -22,7 +22,7 @@ const projects = [
                 "image" : "icons/github.png",
             },
         ],
-        "overview" : "<div class='margin-top'>Not added yet.</div>",
+        "details" : "projects/kosmic-hunters/details-body.html",
         "releaseDate" : "24/04/2024",
     },
     {
@@ -33,10 +33,10 @@ const projects = [
         "role" : "Programming",
         "duration" : "1 month",
         "imagePaths" : [
-            "images/opengl/1.png",
-            "images/opengl/2.png",
-            "images/opengl/3.png",
-            "images/opengl/4.png",
+            "projects/opengl-renderer/slides/1.png",
+            "projects/opengl-renderer/slides/2.png",
+            "projects/opengl-renderer/slides/3.png",
+            "projects/opengl-renderer/slides/4.png",
         ],
         "links" : [
             {
@@ -44,7 +44,7 @@ const projects = [
                 "image" : "icons/github.png",
             }
         ],
-        "overview" : "<div class='margin-top'>Not added yet.</div>",
+        "details" : "projects/opengl-renderer/details-body.html",
         "releaseDate" : "04/09/2023",
     },
     {
@@ -55,9 +55,9 @@ const projects = [
         "role" : "Programming, Artist",
         "duration" : "2 months",
         "imagePaths" : [
-            "images/piratas/1.png",
-            "images/piratas/2.png",
-            "images/piratas/3.png",
+            "projects/piratas/slides/1.png",
+            "projects/piratas/slides/2.png",
+            "projects/piratas/slides/3.png",
         ],
         "links" : [
             {
@@ -69,7 +69,7 @@ const projects = [
                 "image" : "icons/github.png",
             },
         ],
-        "overview" : "<div class='margin-top'>Not added yet.</div>",
+        "details" : "projects/piratas/details-body.html",
         "releaseDate" : "04/09/2023",
     },
     {
@@ -80,11 +80,11 @@ const projects = [
         "role" : "Programming",
         "duration" : "3 months",
         "imagePaths" : [
-            "images/biomagnetic/1.png",
-            "images/biomagnetic/2.png",
-            "images/biomagnetic/3.png",
-            "images/biomagnetic/4.png",
-            "images/biomagnetic/5.png",
+            "projects/biomagnetic/slides/1.png",
+            "projects/biomagnetic/slides/2.png",
+            "projects/biomagnetic/slides/3.png",
+            "projects/biomagnetic/slides/4.png",
+            "projects/biomagnetic/slides/5.png",
         ],
         "links" : [
             {
@@ -96,7 +96,7 @@ const projects = [
                 "image" : "icons/github.png",
             },
         ],
-        "overview" : "<div class='margin-top'>Not added yet.</div>",
+        "details" : "projects/biomagnetic/details-body.html",
         "releaseDate" : "20/01/2023",
     },
     {
@@ -107,8 +107,8 @@ const projects = [
         "role" : "Programming, 2D Art",
         "duration" : "2 months",
         "imagePaths" : [
-            "images/godot-chess/1.png",
-            "images/godot-chess/2.png",
+            "projects/godot-chess/slides/1.png",
+            "projects/godot-chess/slides/2.png",
         ],
         "links" : [
             {
@@ -120,7 +120,7 @@ const projects = [
                 "image" : "icons/github.png",
             },
         ],
-        "overview" : "<div class='margin-top'>Not added yet.</div>",
+        "details" : "projects/godot-chess/details-body.html",
         "releaseDate" : "30/10/2021",
     },
     {
@@ -131,10 +131,10 @@ const projects = [
         "role" : "Programming, SVG Art",
         "duration" : "2 months",
         "imagePaths" : [
-            "images/minejsweeper/1.png",
-            "images/minejsweeper/2.png",
-            "images/minejsweeper/3.png",
-            "images/minejsweeper/4.png",
+            "projects/minejsweeper/slides/1.png",
+            "projects/minejsweeper/slides/2.png",
+            "projects/minejsweeper/slides/3.png",
+            "projects/minejsweeper/slides/4.png",
         ],
         "links" : [
             {
@@ -146,7 +146,7 @@ const projects = [
                 "image" : "icons/github.png",
             },
         ],
-        "overview" : "<div class='margin-top'>Not added yet.</div>",
+        "details" : "projects/minejsweeper/details-body.html",
         "releaseDate" : "16/04/2021",
     },
 ]

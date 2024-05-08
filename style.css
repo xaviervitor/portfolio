@@ -39,7 +39,7 @@ body {
 
 a {
     text-decoration: none;
-    font-weight: bold;
+    font-weight: 700;
 }
 
 a:link {
@@ -94,12 +94,12 @@ a:active {
 
 .strong-text {
     color: black;
-    font-weight: bold;
+    font-weight: 700;
 }
 
 .accent-text {
     color: var(--hyperlink-color);
-    font-weight: bold;
+    font-weight: 700;
 }
 
 .page-body {
@@ -226,7 +226,7 @@ a:active {
 
 .title-text {
     font-size: var(--large-text-size);
-    font-weight: bold;
+    font-weight: 700;
     color: var(--title-color);
 }
 

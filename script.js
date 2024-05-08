@@ -17,8 +17,8 @@ function appendContainerItems() {
 
         const article = document.createElement("a");
         article.classList.add("item");
-        let url = new URL("details.html", window.location.href);
-        url.searchParams.set('game', i);
+        let url = new URL("portfolio/details.html", window.location.origin);
+        url.searchParams.set("project", i);
         article.href = url.toString();
         
         const slideShow = document.createElement("div");
@@ -43,22 +43,9 @@ function appendContainerItems() {
 
         const gameInfoText = document.createElement("div");
 
-        // const gameCardHeader = document.createElement("div");
-        // gameCardHeader.classList.add("card-header");
-
         const gameTitle = document.createElement("span");
         gameTitle.classList.add("title-text");
         gameTitle.innerHTML = project.title;
-
-        // const detailsButton = document.createElement("a");
-        // detailsButton.classList.add("button-card");
-        // detailsButton.innerHTML = "Details";
-        // let url = new URL("details.html", window.location.origin);
-        // url.searchParams.set('game', i);
-        // detailsButton.href = url.toString();
-        
-        // gameCardHeader.appendChild(gameTitle);
-        // gameCardHeader.appendChild(detailsButton);
 
         const gameSummary = document.createElement("div");
         gameSummary.classList.add("margin-bottom");

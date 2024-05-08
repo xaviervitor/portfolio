@@ -1,4 +1,4 @@
-let gameIndex;
+let projectIndex;
 
 const spanTitle = document.getElementById("span-title");
 const spanSummary = document.getElementById("span-summary");
@@ -9,29 +9,29 @@ const spanDuration = document.getElementById("span-duration");
 const spanRelease = document.getElementById("span-release");
 const divSlideShow = document.getElementById("slide-show");
 const spanLinks = document.getElementById("span-links");
-const divOverview = document.getElementById("div-overview");
+const divDetails = document.getElementById("div-details");
 
 document.body.onload = onLoad;
 
 function onLoad() {
     var url = new URL(window.location.href);
-    gameIndex = url.searchParams.get("game");
+    projectIndex = url.searchParams.get("project");
 
-    document.title = projects[gameIndex].title;
+    document.title = projects[projectIndex].title;
     
     setGameInfo();
 }
 
 function setGameInfo() {
-    spanTitle.innerHTML = projects[gameIndex].title;
-    spanSummary.innerHTML = projects[gameIndex].summary;
-    spanPlatforms.innerHTML = projects[gameIndex].platforms;
-    spanTools.innerHTML = projects[gameIndex].tools;
-    spanRole.innerHTML = projects[gameIndex].role;
-    spanDuration.innerHTML = projects[gameIndex].duration;
-    spanRelease.innerHTML = projects[gameIndex].releaseDate;
+    spanTitle.innerHTML = projects[projectIndex].title;
+    spanSummary.innerHTML = projects[projectIndex].summary;
+    spanPlatforms.innerHTML = projects[projectIndex].platforms;
+    spanTools.innerHTML = projects[projectIndex].tools;
+    spanRole.innerHTML = projects[projectIndex].role;
+    spanDuration.innerHTML = projects[projectIndex].duration;
+    spanRelease.innerHTML = projects[projectIndex].releaseDate;
 
-    const imagePathsArray = projects[gameIndex].imagePaths;
+    const imagePathsArray = projects[projectIndex].imagePaths;
     for (let i = 0 ; i < imagePathsArray.length ; i++) {
         const imagePath = imagePathsArray[i];
         
@@ -40,7 +40,7 @@ function setGameInfo() {
         divSlideShow.appendChild(image);
     }
 
-    const linksArray = projects[gameIndex].links;
+    const linksArray = projects[projectIndex].links;
     for (let i = 0 ; i < linksArray.length ; i++) {
         const link = linksArray[i];
         
@@ -51,6 +51,4 @@ function setGameInfo() {
         anchor.appendChild(image);
         spanLinks.appendChild(anchor);
     }
-
-    divOverview.innerHTML = projects[gameIndex].overview;
 }
