@@ -23,6 +23,12 @@ function onLoad() {
 }
 
 function setGameInfo() {
+    fetch(projects[projectIndex].details)
+    .then((response) => response.text())
+    .then((text) => {
+        divDetails.innerHTML = text;
+    });
+
     spanTitle.innerHTML = projects[projectIndex].title;
     spanSummary.innerHTML = projects[projectIndex].summary;
     spanPlatforms.innerHTML = projects[projectIndex].platforms;
