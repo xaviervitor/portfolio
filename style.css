@@ -37,6 +37,10 @@ body {
     color: var(--text-color);
 }
 
+h1, h2, h3, h4, h5, h6 {
+    color: var(--title-color);
+}
+
 a {
     text-decoration: none;
     font-weight: 700;
@@ -100,6 +104,11 @@ a:active {
 .accent-text {
     color: var(--hyperlink-color);
     font-weight: 700;
+}
+
+.emphasis-text {
+    font-weight: 700;
+    font-style: italic;
 }
 
 .page-body {
@@ -257,6 +266,29 @@ a:active {
 
 .details-img {
     min-width: 60%;
+}
+
+.details-media {
+    margin: var(--gap-size);
+    text-align: center;
+}
+
+.details-media > * {
+    display: inline;
+    width: 480px;
+    height: 100%;
+    border-radius: 10px;
+}
+
+.side-by-side {
+    display: flex;
+    align-items: center;
+    gap: var(--gap-size);
+    margin: var(--gap-size) 0;
+}
+
+.side-by-side > * {
+    width: 100%;
 }
 
 .button-card {

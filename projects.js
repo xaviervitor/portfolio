@@ -4,7 +4,7 @@ const projects = [
         "summary" : "A multiplayer FPS featuring alien and human characters, built with the Unreal Engine.",
         "platforms" : "Windows",
         "tools" : "Unreal Engine, C++, Blueprint",
-        "role" : "Programming, Level Design / Environment Art, 3D Modeling (level props)",
+        "role" : "Programming, Level Design / Environment Art, some 3D Modeling",
         "duration" : "6 months",
         "imagePaths" : [
             "projects/kosmic-hunters/slides/1.png",

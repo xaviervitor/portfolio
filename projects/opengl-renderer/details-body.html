@@ -1,3 +1,227 @@
-<div class="margin-top">
-    Not added yet.
+
+<p>
+    This project is a simple graphics renderer with no name for now, born of with my desire to learn more
+    about graphics programming and the C++ language.
+</p>
+<p>
+    The main goals of this project are, in order of importance: 
+    <ul>
+        <li>Learn how the Unreal Engine works, especially the Unreal C++ framework;</li>
+        <li>Learn multiplayer programming;</li>
+        <li>Get level design experience creating a first person shooter map of my own design;</li>
+        <li>Create a visually appealing and polished game, to get used to the Unreal asset pipeline
+            and deal with real game-ready assets, achieving a fair level of polish.</li>
+    </ul>
+</p>
+<h2>Features</h2>
+<p>
+    <ul>
+        <li>Replicated hitscan and projectile weapons;</li>
+        <li>Replicated death/respawn & scoreboard;</li>
+        <li>Replicated item pickups;</li>
+        <li>An optimized FPS level of my own design;</li>
+        <li>Replicated multipurpose elevators;</li>
+        <li>Replicated aim offset and turn in place animations.</li>
+    </ul>
+</p>
+
+<h2>First Steps</h2>
+<p>
+    As this would be my first game made with the Unreal Engine, to begin, I started reading UE5 
+    Introduction books and landed in an excellent book called <a href="https://www.packtpub.com/product/elevating-game-experiences-with-unreal-engine-5-second-edition/9781803239866">Elevating Game Experiences with Unreal Engine 5</a>.
+</p>
+<p>
+    This book teaches various tools of the engine, building four games, step by step,
+    with all the code implemented in C++. The last project is a simplified multiplayer FPS game,
+    which I used as a base to build this project. Implementing features with the book's guidance,
+    I had a prototype that looked like the following video:
+</p>
+<div class="details-media">
+    <video controls>
+        <source src="projects/kosmic-hunters/media/firstbuilddemo.mp4" type="video/mp4">
+    </video>
 </div>
+<p>
+    This build included replicated hitscan
+    weapons, damage, death/respawn and a simple UI, including a HUD, scoreboard and kill
+    notification panel. This version of the game was also full of buggy animations, sounds and
+    overall lacked polish.
+</p>
+<h2>Level Design</h2>
+<p>
+    My vision for this game was a sci-fi shooter with energy weapons similar to Samus Aran's Arm
+    Cannon and Quake's rocket jump explosions, set in a large arena with many interconnected rooms to
+    keep players constantly moving and encountering other players, encouraging interaction in
+    combat. The map blockout was created with these interactions in mind, and underwent many
+    iterations to achieve more of the original vision. 
+</p>
+<p>
+    I also used 2D schematics to help me understand the environment, estimate player travel times
+    and inform decisions on where stairs, connectors, elevators and ladders should be placed.
+</p>
+<div class="details-media side-by-side">
+    <img src="projects/kosmic-hunters/media/blockout.png" />
+    <img src="projects/kosmic-hunters/media/schematic.png" />
+</div>
+<h2>Mechanics</h2>
+<p>
+    After the blockout, I focused on implementing projectile mechanics, player impulse using the
+    projectile explosions, ladders and elevators.
+</p>
+<p>
+    Before implementing new mechanics, some existing features needed fixing. As seen in the
+    first video, the prototype build had implemented the player character with only a single model.
+    What can be called a "true first-person" implementation has its advantages, but lacks the
+    versatility of this project's final implementation, with separate models for the third-person
+    character, first-person arms (the Counter-Strike "viewmodel") and first-person lower body. This
+    implementation meant that when a weapon is equipped, a gun model had to be spawned for the
+    first-person view and also for the third-person view.
+</p>
+<div class="details-media">
+    <img src="projects/kosmic-hunters/media/threemodels.png" />
+</div>
+<p>
+    Implementing <span class="accent-text">projectiles</span> properly proved to be fairly
+    challenging in multiplayer. The Unreal Engine provides a solid framework with its replication
+    and RPCs (Remote Procedure Calls) and the aforementioned book stood out as a good reference
+    resource.
+</p>
+<p>
+    In the final implementation, the real invisible projectile actor is spawned as usual, from the center of 
+    the player camera, in the camera's direction. But at the same time, a visible projectile without
+    collision is spawned from the weapon's muzzle. A Multicast RPC had to be made to set the
+    projectile's position to the third-person model's muzzle or the first-person model's muzzle of
+    the shooting player on all clients, given that the third-person weapon is visible to non-owners
+    and the first-person is only visible by the owner.
+</p>
+<p>
+    The collision spawns an <span class="accent-text">explosion</span>, and its collision damages
+    and/or generates an impulse based on the normalized distance from the center of the explosion.
+</p>
+<div class="details-media side-by-side">
+    <img src="projects/kosmic-hunters/media/projectile.png" />
+    <video autoplay loop muted controls>
+        <source src="projects/kosmic-hunters/media/elevator.mp4" type="video/mp4">
+    </video>
+</div>
+<p>
+    <span class="accent-text">Elevators</span> are implemented in a fairly generic sense: an
+    elevator has a <span class="emphasis-text">TArray</span> of Transforms, the 
+    <span class="emphasis-text">ElevatorStops</span> array. The elevator uses this array and a <span class="emphasis-text">FPendingLatentAction</span> to
+    interpolate the Actor's transform from one 
+    <span class="emphasis-text"></span>elevator stop</span> to the next, wrapping down to the start
+    of the list after it reaches the end of <span class="emphasis-text">ElevatorStops</span>. This Actor can also reference other
+    Actors, to move together following a single trigger. In my game, two elevators move up and
+    down, respectively, when a player collides with any one of them. Like the elevator in Undead
+    Parish from the original Dark Souls.
+</p>
+<h2>Polishing</h2>
+<p>
+    To achieve my final objective of creating an overall polished and visually appealing game, I
+    implemented the following features:
+    <ul>
+        <li>An upper body aim offset on the player's third-person model;</li>
+        <li>A first-person lower body turning animation system;</li>
+        <li>A character selection screen.</li>
+    </ul>
+    As with all of Animation and UI code, I chose to implement them using Blueprints.
+</p>
+<p>
+    Work on the <span class="accent-text">aim offset</span> followed suit. Initially, the Player
+    model's yaw rotation followed the Camera's yaw rotation. That works, but visually the player
+    just rotated like a disk. The first step was to unlink the two, and turn only the upper body using
+    the <span class="emphasis-text">Transform (Modify) Bone</span>, with varying Alpha values
+    (weights), on the <span class="emphasis-text">Spine</span>,
+    <span class="emphasis-text">Spine1</span> and <span class="emphasis-text">Spine2</span> bones. 
+    This was done to make the bone transformations more natural and prevent clipping between lower
+    and upper body parts. A video demonstration and the related blueprint can be seen in the media
+    below. 
+</p>
+<div class="details-media side-by-side">
+    <video autoplay loop muted controls>
+        <source src="projects/kosmic-hunters/media/aimoffset.mp4" type="video/mp4">
+    </video>
+    <img src="projects/kosmic-hunters/media/transformbones.png" />
+</div>
+<p>
+    As you can see, the player is already playing the turn animation when the aim offset passes a
+    threshold. This video was recorded at the date of writing, and already shows the turn in place
+    system I'll talk about below.
+<p>
+</p>
+    The <span class="accent-text">turning system</span> also uses the same aim offset to determine
+    when turning logic has to run. The state machine uses the offset to trigger turning animations,
+    and at the same time, the blueprint runs logic to subtract the incremental rotations from the
+    aim offset applied by the turning animation as it plays, using two animation curves added to all
+    turning animations.
+</p>
+<p>
+    The second "Turning" curve was used to extract the value of the first "Rotation" curve. In UE,
+    an animation curve automatically does fade-in and fade-out interpolations, but for my purposes,
+    I needed the raw value, from 0 to the target rotation, of said curve. In the
+    below blueprint, the "Rotation" curve is divided by the "Turning" curve value. Because both
+    curves interpolate by the same factor and the Turning is supposed to always be a baseline 1
+    value, dividing by this value results in the correction of the lack or excess of rotation
+    caused by interpolation. This behavior was <span class="strong-text">very</span> difficult to
+    investigate.
+</p>
+<div class="details-media side-by-side">
+    <video autoplay loop muted controls>
+        <source src="projects/kosmic-hunters/media/turning.mp4" type="video/mp4">
+    </video>
+    <img src="projects/kosmic-hunters/media/turninplace.png" />
+</div>
+<p>
+    Throughout development, I had implemented the character skeleton in a way that would allow me to
+    use models and animations from <a href="https://www.mixamo.com/">Mixamo</a>, as well as
+    weapon sockets to use with models from <a href="https://www.mixamo.com/">Sketchfab</a>. It was
+    time to put that to use. I made a
+    character selection menu that dynamically loads characters from a 
+    <span class="emphasis-text">UDataAsset</span> resource, displays a 3D view of the selected
+    character using a Render Target, and calls an RPC to change the character of the requesting
+    client on all other clients.
+</p>
+<p>
+    There was an apparent bug on the character selection menu. If a client changed character, 
+    updating its 3D Render Target, it would also change all other Render Targets, of all clients.
+    This was <span class="strong-text">really hard</span> to investigate, as it would turn out that it wasn't a bug in my code
+    &mdash; or in the engine code! The reason is that a Render Target is instanced once per process.
+    Which makes total sense for a Standalone game, but in the PIE (Play In Editor), it means that
+    all simulated instances of clients or servers &mdash; all the games &mdash; share the same
+    Render Target, and as in a built, launched game this wouldn't be the case, a solution for this
+    problem wasn't necessary.
+</p>
+<div class="details-media">
+    <video autoplay loop muted controls>
+        <source src="projects/kosmic-hunters/media/characterchange.mp4" type="video/mp4">
+    </video>
+</div>
+<h2>Level Optimization</h2>
+<p>
+    Another important step in the visuals was finishing the level itself. I modeled the last version of the
+    blockout in Blender to reduce the triangle count and facilitate the lightmap UV generation. It
+    was all much faster than I anticipated, and provided opportunities to refine misalignments in
+    the level geometry that had caused light leaks and other problems before. It was also at that
+    stage that I modeled the glass ceilings and a modular ladder.
+</p>
+<p>
+    To finish, I set up sky lighting, fog, placed lights & reflection probes and ran the lightmap
+    bake. Traditional lightmaps don't have the shimmering artifacts I was experiencing with
+    Lumen's Global Illumination and generally run faster, at the cost of memory and build size. It
+    should be noted that I'm no environment artist or Unreal Engine expert, I'm sure there are ways
+    of mitigating performance and visual artifacts using Lumen, but these are beyond the scope of
+    this project.
+</p>
+<div class="details-media side-by-side">
+    <img src="projects/kosmic-hunters/media/baking.png">
+    <img src="projects/kosmic-hunters/media/lightmap.png">
+</div>
+<h2>Conclusion</h2>
+<p>
+    This project was the most challenging I've completed since I started making games. The combined
+    complexity of learning a new engine, working with multiplayer for the first time, getting used
+    to the Unreal C++ framework and chasing a level of polish I'd never even attempted before made
+    for a very difficult and rewarding challenge, which I ultimately conquered.
+</p>
+
+Thank you for reading.
