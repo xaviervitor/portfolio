@@ -8,8 +8,9 @@ const spanRole = document.getElementById("span-role");
 const spanDuration = document.getElementById("span-duration");
 const spanRelease = document.getElementById("span-release");
 const divSlideShow = document.getElementById("slide-show");
-const spanLinks = document.getElementById("span-links");
 const divDetails = document.getElementById("div-details");
+
+const spanLinksList = document.getElementsByClassName("span-links");
 
 document.body.onload = onLoad;
 
@@ -37,6 +38,8 @@ function setGameInfo() {
     spanDuration.innerHTML = projects[projectIndex].duration;
     spanRelease.innerHTML = projects[projectIndex].releaseDate;
 
+    initSlideShow(divSlideShow, 0, 0);
+
     const imagePathsArray = projects[projectIndex].imagePaths;
     for (let i = 0 ; i < imagePathsArray.length ; i++) {
         const imagePath = imagePathsArray[i];
@@ -47,14 +50,19 @@ function setGameInfo() {
     }
 
     const linksArray = projects[projectIndex].links;
-    for (let i = 0 ; i < linksArray.length ; i++) {
-        const link = linksArray[i];
+    
+    for (let i = 0 ; i < spanLinksList.length ; i++) {
+        const spanLinks = spanLinksList[i];
         
-        const anchor = document.createElement("a");
-        anchor.href = link.href;
-        const image = document.createElement("img");
-        image.src = link.image;
-        anchor.appendChild(image);
-        spanLinks.appendChild(anchor);
+        for (let i = 0 ; i < linksArray.length ; i++) {
+            const link = linksArray[i];
+            
+            const anchor = document.createElement("a");
+            anchor.href = link.href;
+            const image = document.createElement("img");
+            image.src = link.image;
+            anchor.appendChild(image);
+            spanLinks.appendChild(anchor);
+        }
     }
 }

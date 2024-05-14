@@ -1,13 +1,10 @@
 let timeoutID;
-let activeSlideShow;
 
 const projectsContainer = document.getElementById("projects-container");
 
 document.body.onload = onLoad;
 
 function onLoad() {
-    activeSlideShow = null;
-    
     appendContainerItems();
 }
 
@@ -24,10 +21,7 @@ function appendContainerItems() {
         const slideShow = document.createElement("div");
         slideShow.classList.add("slide-show");
 
-        slideShow.slideShowIndex = i;
-        slideShow.slideIndex = 0;
-        slideShow.addEventListener('mouseenter', startSlideShow);
-        slideShow.addEventListener('mouseleave', stopSlideShow);
+        initSlideShow(slideShow, i, 0);
         
         const imagePathsArray = project.imagePaths;
         for (let i = 0 ; i < imagePathsArray.length ; i++) {
@@ -85,31 +79,4 @@ function appendContainerItems() {
 
         projectsContainer.appendChild(article);
     }
-}
-
-function startSlideShow(event) {
-    activeSlideShow = event.currentTarget;
-    timeoutID = setTimeout(advanceSlide, 500);
-}
-
-function advanceSlide() {
-    if (!activeSlideShow) return;
-    activeSlideShow.children[activeSlideShow.slideIndex].style.display = "none";
-    activeSlideShow.slideIndex++;
-    if (activeSlideShow.slideIndex > activeSlideShow.children.length - 1) activeSlideShow.slideIndex = 0
-    activeSlideShow.children[activeSlideShow.slideIndex].style.display = "block";
-    clearTimeout(timeoutID);
-    timeoutID = setTimeout(advanceSlide, 2000);
-}
-
-function stopSlideShow(event) {
-    resetSlide();
-    activeSlideShow = null;
-    clearTimeout(timeoutID);
-}
-
-function resetSlide() {
-    activeSlideShow.children[activeSlideShow.slideIndex].style.display = "none";
-    activeSlideShow.children[0].style.display = "block";
-    activeSlideShow.slideIndex = 0;
 }
