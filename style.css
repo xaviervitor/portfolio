@@ -15,6 +15,7 @@
     --text-color: rgb(64, 64, 64);
     --text-background-color: rgb(37, 73, 40, 0.125);
     --hyperlink-color: rgb(35, 102, 64);
+    --border-radius: 10px;
 
     --button-color: rgba(255, 255, 255, 0.5);
     --button-hover-color: rgba(255, 255, 255, 0.66);
@@ -90,7 +91,7 @@ a:active {
 }
 
 .rounded {
-    border-radius: 10px;
+    border-radius: var(--border-radius);
 }
 
 .medium-text {
@@ -125,7 +126,7 @@ a:active {
 
 .page-body {
     image-rendering: auto;
-    width: 900px;
+    max-width: 900px;
     margin: auto;
 }
 
@@ -184,7 +185,7 @@ a:active {
     flex-basis: calc(50% - (var(--gap-size) / 2));
 
     cursor: pointer;
-    border-radius: 10px;
+    border-radius: var(--border-radius);
     overflow: hidden;
 }
 
@@ -281,15 +282,16 @@ a:active {
 }
 
 .details-media {
-    margin: var(--gap-size);
+    margin: var(--gap-size) 0;
     text-align: center;
 }
 
 .details-media > * {
     display: inline;
     width: 480px;
+    max-width: 100%;
     height: 100%;
-    border-radius: 10px;
+    border-radius: var(--border-radius);
 }
 
 .side-by-side {
@@ -309,7 +311,7 @@ a:active {
     background-color: var(--button-color);
     padding: calc(var(--gap-size) / 2);
     height: inherit;
-    border-radius: 10px;
+    border-radius: var(--border-radius);
     user-select: none;
     cursor: pointer;
 }
@@ -331,4 +333,41 @@ a:active {
 .button-card:active {
     background-color: var(--button-active-color);
     transition: background-color 0.125s linear;
+}
+
+@media only screen and (max-width: 900px) {
+    .page-body {
+        margin: var(--gap-size);
+    }
+}
+
+@media only screen and (max-width: 690px) {
+    ul {
+        padding-left: var(--gap-size);
+    }
+    
+    .profile {
+        flex-flow: column;
+    }
+
+    .profile img {
+        margin-top: var(--gap-size); 
+        border-radius: var(--border-radius);
+        align-self: center;
+    }
+    
+    .container {
+        flex-flow: column;
+    }
+    
+    .overview-info {
+        flex-flow: column-reverse;
+    }
+    .page-body {
+        margin: var(--gap-size);
+    }
+
+    .side-by-side {
+        flex-flow: column;
+    }
 }

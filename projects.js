@@ -4,7 +4,7 @@ const projects = [
         "summary" : "A multiplayer FPS featuring alien and human characters, built with the Unreal Engine.",
         "platforms" : "Windows",
         "tools" : "Unreal Engine, C++, Blueprint",
-        "role" : "Programming, Level Design / Environment Art, some 3D Modeling",
+        "role" : "Programming, Level Design, Environment Art, some 3D Modeling",
         "duration" : "6 months",
         "imagePaths" : [
             "projects/kosmic-hunters/slides/1.png",
@@ -77,7 +77,7 @@ const projects = [
         "summary" : "A First-Person Puzzle game about using magnetism using your hand to remotely control objects.",
         "platforms" : "Windows",
         "tools" : "Unity Engine, C#",
-        "role" : "Programming",
+        "role" : "Programming, Level Design, Environment Art",
         "duration" : "3 months",
         "imagePaths" : [
             "projects/biomagnetic/slides/1.png",
