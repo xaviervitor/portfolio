@@ -27,7 +27,7 @@ const projects = [
     },
     {
         "title" : "OpenGL Renderer",
-        "summary" : "An OpenGL graphics renderer using the <a href='https://learnopengl.com/'>LearnOpenGL book by JoeyDeVries</a> as a guide.",
+        "summary" : "An OpenGL graphics renderer using the <span class='accent-text'>LearnOpenGL book by JoeyDeVries</span> as a guide.",
         "platforms" : "Windows",
         "tools" : "OpenGL, C++",
         "role" : "Programming",
