@@ -305,6 +305,37 @@ a:active {
     width: 100%;
 }
 
+.zoomable {
+    cursor: pointer;
+}
+
+.zoom-view {
+    display: none;
+}
+
+.zoom-background {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-color: rgba(1, 1, 1, 0.25);
+    backdrop-filter: blur(8px);
+}
+
+.zoom-image {
+    image-rendering: auto;
+    margin: auto;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    max-height: 90%;
+    max-width: 90%;
+    border-radius: 10px;
+}
+
 .button-card {
     all: unset;
     text-decoration: none;

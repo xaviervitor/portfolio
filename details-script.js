@@ -28,6 +28,7 @@ function setGameInfo() {
     .then((response) => response.text())
     .then((text) => {
         divDetails.innerHTML = text;
+        setupZoomableImages();
     });
 
     spanTitle.innerHTML = projects[projectIndex].title;
