@@ -1,13 +1,8 @@
 <p>
-    Kosmic Hunters is a multiplayer first-person shooter inspired by classic arena shooters 
-    like Quake and Unreal Tournament. It can be played on LAN, features four character skins,
-    three weapons and a level called <span class="emphasis-text">Facility</span>.
+    Kosmic Hunters is a multiplayer first-person shooter inspired by classic arena shooters like Quake and Unreal Tournament. It can be played on LAN, features four character skins, three weapons and a level called <span class="emphasis-text">Facility</span>.
 <p>
 </p>
-    My vision for this game was a sci-fi shooter with energy weapons similar to Samus Aran's Arm
-    Cannon and Quake's rocket jump explosions, set in a large arena with many interconnected rooms
-    and verticality to keep players constantly moving and encountering other players, encouraging
-    interaction in combat.
+    My vision for this game was a sci-fi shooter with energy weapons similar to Samus Aran's Arm Cannon and Quake's rocket jump explosions, set in a large arena with many interconnected rooms and verticality to keep players constantly moving and encountering other players, encouraging interaction in combat.
 </p>
 <h2>Goals</h2>
 <p>
@@ -15,8 +10,7 @@
         <li>Learn how the Unreal Engine works, especially the Unreal C++ framework;</li>
         <li>Learn multiplayer programming;</li>
         <li>Get level design experience by blocking and modeling a first-person shooter level;</li>
-        <li>Create a visually appealing and polished game, to get used to the Unreal asset pipeline
-            and deal with real game-ready assets, achieving a fair level of polish.</li>
+        <li>Create a visually appealing and polished game, to get used to the Unreal asset pipeline and deal with real game-ready assets, achieving a fair level of polish.</li>
     </ul>
 </p>
 <h2>Features</h2>
@@ -35,34 +29,20 @@
 </p>
 <h3>Hitscan Weapons</h3>
 <p>
-    This game is built with a server authoritative model. That means that the only valid game state is
-    the server's, and all client interactions with the game world or other characters (collisions,
-    damage) are sent to the server to be validated, executed in the server's game world and sent back,
-    using built-in replication, RPCs (Remote Procedure Calls), etc. This is the basis
-    of every mechanic and feature described in this article.
+    This game is built with a server authoritative model. That means that the only valid game state is the server's, and all client interactions with the game world or other characters (collisions, damage) are sent to the server to be validated, executed in the server's game world and sent back, using built-in replication, RPCs (Remote Procedure Calls), etc. This is the basis of every mechanic and feature described in this article.
 </p>
 <p>
-    When the player hits the <span class="emphasis-text">FIRE</span> input, an RPC is made to the
-    server. The server makes all necessary checks, for example if the player has a weapon and bullets.
-    If it all checks, a Multicast RPC is sent to play animations and sounds. If a character is hit,
-    the server makes another Multicast RPC to handle deaths, play sounds and animations in all
-    clients.
+    When the player hits the <span class="code-text">FIRE</span> input, an RPC is made to the server. The server makes all necessary checks, for example if the player has a weapon and bullets. If it all checks, a Multicast RPC is sent to play animations and sounds. If a character is hit, the server makes another Multicast RPC to handle deaths, play sounds and animations in all clients.
 </p>
 <div class="side-by-side">
     <img src="projects/kosmic-hunters/media/multiplayerflowchart.png" />
 </div>
 <h3>Death/Respawn & Scoreboard</h3>
 <p>
-    A player death triggers a OnDeath method call on the GameMode
-    object. This updates both character scores, in their respective PlayerState objects, and notifies
-    the Scoreboard (via PlayerController). With all state updated, it detaches the killed character
-    from its controller, and respawns the player again after a set timer.
+    A player death triggers a OnDeath method call on the GameMode object. This updates both character scores, in their respective PlayerState objects, and notifies the Scoreboard (via PlayerController). With all state updated, it detaches the killed character from its controller, and respawns the player again after a set timer.
 </p>
 <p>
-    The scoreboard is a widget in the player's HUD that can be triggered with the
-    <span class="emphasis-text">TAB</span> input. It is constructed using the GameState, which gets
-    all PlayerStates from the clients and sorts them based on most kills. The aforementioned kill
-    notification triggers the reconstruction of the widget, in Blueprint.
+    The scoreboard is a widget in the player's HUD that can be triggered with the <span class="code-text">TAB</span> input. It is constructed using the GameState, which gets all PlayerStates from the clients and sorts them based on most kills. The aforementioned kill notification triggers the reconstruction of the widget, in Blueprint.
 </p>
 <div class="details-media">
     <video controls>
@@ -72,23 +52,13 @@
 
 <h3>Projectiles & Explosions</h3>
 <p>
-    Implementing projectiles properly proved to be fairly challenging. In the first implementations,
-    projectiles were spawned in the weapon
-    muzzle position, which made projectiles inconsistent. Any held weapon is attached onto a 
-    the <span class="emphasis-text">Skeletal Mesh Socket</span> in the character arms, which means
-    the projecile's spawn position would be different at every frame of animations like jumping or
-    running, sometimes colliding with a nearby wall and exploding prematurely.
+    Implementing projectiles properly proved to be fairly challenging. In the first implementations, projectiles were spawned in the weapon muzzle position, which made projectiles inconsistent. Any held weapon is attached onto a the <span class="emphasis-text">Skeletal Mesh Socket</span> in the character arms, which means the projecile's spawn position would be different at every frame of animations like jumping or running, sometimes colliding with a nearby wall and exploding prematurely.
 </p>
 <p>
-    In the final implementation, the real invisible colliding projectile Actor is
-    spawned using the camera position and direction. But at the same time, a visible
-    Actor projectile without collision is spawned at the weapon's muzzle.
+    In the final implementation, the real invisible colliding projectile Actor is spawned using the camera position and direction. But at the same time, a visible Actor projectile without collision is spawned at the weapon's muzzle.
 </p>
 <p>
-    The projectile collision spawns an <span class="accent-text">explosion</span>, and its collision
-    damages and generates an impulse on the colliding character, calculated as the delta between the
-    center of the explosion and the character's origin, enabling rocket launching and laying the
-    ground work for flying ragdolls on character deaths by explosive weapons.
+    The projectile collision spawns an explosion, and its collision damages and generates an impulse on the colliding character, calculated as the delta between the center of the explosion and the character's origin, enabling rocket launching and laying the ground work for flying ragdolls on character deaths by explosive weapons.
 </p>
 <div class="details-media">
 </div>
@@ -100,15 +70,7 @@
 </div>
 <h3>Elevators</h3>
 <p>
-    Elevators are implemented in a fairly generic sense: an
-    elevator has a <span class="emphasis-text">TArray</span> of Transforms, the 
-    <span class="emphasis-text">ElevatorStops</span> array. The elevator uses this array to
-    asynchronously interpolates the Actor's transform from one 
-    <span class="emphasis-text"></span>elevator stop</span> to the next, wrapping down to the start
-    of the list after it reaches the end of <span class="emphasis-text">ElevatorStops</span>. This
-    Actor can also reference other Actors, to move together following a single trigger. In this
-    game, two elevators move up and down, respectively, when a player collides with any one of them.
-    Like the elevator in Undead Parish from the original Dark Souls.
+    Elevators are implemented in a fairly generic sense: an elevator has a <span class="code-text">TArray</span> of Transforms, the <span class="code-text">ElevatorStops</span> array. The elevator uses this array to asynchronously interpolates the Actor's transform from one elevator stop to the next, wrapping down to the start of the list after it reaches the end of <span class="code-text">ElevatorStops</span>. This Actor can also reference other Actors, to move together following a single trigger. In this game, two elevators move up and down, respectively, when a player collides with any one of them. Like the elevator in Undead Parish from the original Dark Souls.
 </p>
 <div class="details-media">
     <video autoplay loop muted controls>
@@ -121,12 +83,7 @@
 </p>
 <h3>Aim offset</h3>
 <p>
-    Initially, the character yaw rotation followed the camera yaw rotation. That works, but visually
-    the character just rotated like a disk.
-    Now, The animation blueprint calculates an aim offset at every animation update, using the delta between the
-    last frame's yaw to the current, and a
-    <span class="emphasis-text">Transform (Modify) Bone</span> applies this aim offset as a negated
-    rotation. A video demonstration and the related blueprint can be seen in the media below. 
+    Initially, the character yaw rotation followed the camera yaw rotation. That works, but visually the character just rotated like a disk. Now, The animation blueprint calculates an aim offset at every animation update, using the delta between the last frame's yaw to the current, and a <span class="emphasis-text">Transform (Modify) Bone</span> applies this aim offset as a negated rotation. A video demonstration and the related blueprint can be seen in the media below.
 </p>
 <div class="details-media side-by-side">
     <video autoplay loop muted controls>
@@ -136,20 +93,10 @@
 </div>
 <h3>Turning system</h3>
 </p>
-    With the same calculated aim offset, the state machine triggers turning animations, and at the
-    same time, the blueprint runs logic to subtract the incremental rotations from the aim offset
-    applied by the turning animation as it plays, using two animation curves added to all turning
-    animations.
+    With the same calculated aim offset, the state machine triggers turning animations, and at the same time, the blueprint runs logic to subtract the incremental rotations from the aim offset applied by the turning animation as it plays, using two animation curves added to all turning animations.
 </p>
 <p>
-    The second "Turning" curve was used to extract the value of the first "Rotation" curve. In UE,
-    an animation curve automatically does fade-in and fade-out interpolations. However, for my purposes,
-    I needed the raw curve value, from 0 to the target rotation. In the below blueprint, the
-    "Rotation" curve is divided by the "Turning" curve value. Because both
-    curves interpolate by the same factor and the Turning is supposed to always be a baseline 1
-    value, dividing by this value cancels the lack or excess of rotation
-    caused by UE's interpolation. This behavior was <span class="strong-text">very</span> difficult to
-    investigate.
+    The second <span class="emphasis-text">Turning</span> curve was used to extract the value of the first <span class="emphasis-text">Rotation</span> curve. In UE, an animation curve automatically does fade-in and fade-out interpolations. However, for my purposes, I needed the raw curve value, from 0 to the target rotation. In the below blueprint, the <span class="emphasis-text">Rotation</span> curve is divided by the <span class="emphasis-text">Turning</span> curve value. Because both curves interpolate by the same factor and the <span class="emphasis-text">Turning</span> curve is supposed to always be a baseline 1 value, dividing by this value cancels the lack or excess of rotation caused by UE's interpolation. This behavior was <span class="strong-text">very</span> difficult to investigate.
 </p>
 <div class="details-media side-by-side">
     <video autoplay loop muted controls>
@@ -159,23 +106,10 @@
 </div>
 <h3>Character Selection</h3>
 <p>
-    Throughout development, I had implemented the character skeleton in a way that would allow me to
-    use models and animations from <a href="https://www.mixamo.com/">Mixamo</a>, as well as
-    weapon <span class="emphasis-text">Skeletal Mesh Sockets</span> to use with models from
-    <a href="https://sketchfab.com/">Sketchfab</a>. I made a character selection menu that
-    dynamically loads characters from a <span class="emphasis-text">UDataAsset</span> resource,
-    displays a 3D view of the selected character using a Render Target, and calls an RPC to change
-    the character of the requesting client on all other clients.
+    Throughout development, I had implemented the character skeleton in a way that would allow me to use models and animations from <a href="https://www.mixamo.com/">Mixamo</a>, as well as weapon <span class="emphasis-text">Skeletal Mesh Sockets</span> to use with models from <a href="https://sketchfab.com/">Sketchfab</a>. I made a character selection menu that dynamically loads characters from a <span class="code-text">UDataAsset</span> resource, displays a 3D view of the selected character using a <span class="emphasis-text">Render Target</span>, and calls an RPC to change the character of the requesting client on all other clients.
 </p>
 <p>
-    There was an apparent bug on the character selection menu. If a client changed character, 
-    updating its 3D Render Target, it would also change all other Render Targets, of all clients.
-    This was <span class="strong-text">really difficult</span> to investigate, as it would turn out that
-    it wasn't a bug in my code &mdash; or in the engine code. The reason is that a Render Target is
-    instanced once per process. Which makes total sense for a Standalone game, but in the PIE (Play
-    In Editor), it means that all simulated instances of clients or servers &mdash; all the games
-    &mdash; share the same Render Target. In an launched game this wouldn't be the case, so a
-    solution for this problem wasn't necessary.
+    There was an apparent bug on the character selection menu. If a client changed character, updating its 3D Render Target, it would also change all other Render Targets, of all clients. This was <span class="strong-text">really difficult</span> to investigate, as it would turn out that it wasn't a bug in my code &mdash; or in the engine code. The reason is that a Render Target is instanced once per process. Which makes total sense for a Standalone game, but in the PIE (Play In Editor), it means that all simulated instances of clients or servers &mdash; all the games &mdash; share the same Render Target. In an launched game this wouldn't be the case, so a solution for this problem wasn't necessary.
 </p>
 <div class="details-media">
     <video autoplay loop muted controls>
@@ -184,33 +118,20 @@
 </div>
 <h2>Level Design</h2>
 <p>
-    I created a level blockout and used 2D schematics to help me estimate player travel times and
-    decide on where stairs, connectors, elevators and ladders should be placed.
-    After many iterations, I had a level with a central tower and a lot of verticality. A great care
-    was put into ensuring most of the rooms had multiple possible paths for the player to choose and
-    make gameplay more dynamic. 
+    I created a level blockout and used 2D schematics to help me estimate player travel times and decide on where stairs, connectors, elevators and ladders should be placed. After many iterations, I had a level with a central tower and a lot of verticality. A great care was put into ensuring most of the rooms had multiple possible paths for the player to choose and make gameplay more dynamic.
 </p>
 <div class="details-media side-by-side">
     <img src="projects/kosmic-hunters/media/blockout.png" />
     <img src="projects/kosmic-hunters/media/schematic.png" />
 </div>
 <p>
-    I modeled the last version of the blockout in Blender to reduce the triangle count and
-    facilitate the lightmap UV generation. It was also at that stage that I modeled the glass
-    ceilings and a modular ladder.
+    I modeled the last version of the blockout in Blender to reduce the triangle count and facilitate the lightmap UV generation. It was also at that stage that I modeled the glass ceilings and a modular ladder.
 </p>
 <p>
-    To finish, I set up sky lighting, fog, placed lights & reflection probes and ran the lightmap
-    bake. Traditional lightmaps don't have the shimmering artifacts I was experiencing with
-    Lumen's Global Illumination and generally run faster, at the cost of memory and build size. It
-    should be noted that I'm no environment artist or Unreal Engine expert. I'm sure there are ways
-    of mitigating performance and visual artifacts using Lumen, but these are beyond the scope of
-    this project.
+    To finish, I set up sky lighting, fog, placed lights & reflection probes and ran the lightmap bake. Traditional lightmaps don't have the shimmering artifacts I was experiencing with Lumen's Global Illumination and generally run faster, at the cost of memory and build size. It should be noted that I'm no environment artist or Unreal Engine expert. I'm sure there are ways of mitigating performance and visual artifacts using Lumen, but these are beyond the scope of this project.
 </p>
 <p>
-    The media below shows the last version of the map in the standard
-    <span class="emphasis-text">Lit</span> view and
-    <span class="emphasis-text">Lightmap Density</span> view.
+    The media below shows the last version of the map in the standard <span class="emphasis-text">Lit</span> view and <span class="emphasis-text">Lightmap Density</span> view.
 </p>
 <div class="details-media side-by-side">
     <img src="projects/kosmic-hunters/media/baking.png">
@@ -218,12 +139,8 @@
 </div>
 <h2>Final Thoughts</h2>
 <p>
-    This project was the most challenging I've completed since I started making games, and stands to
-    as a milestone in my early career. The combined complexity of learning a new engine, working
-    with multiplayer for the first time, getting used to the Unreal C++ framework and chasing a
-    level of polish I'd never attempted before made for a very difficult and rewarding challenge.
+    This project was the most challenging I've completed since I started making games, and stands to as a milestone in my early career. The combined complexity of learning a new engine, working with multiplayer for the first time, getting used to the Unreal C++ framework and chasing a level of polish I'd never attempted before made for a very difficult and rewarding challenge.
 </p>
 <p>
-    You can play Kosmic Hunters or check out its source code visiting the links below. Thank you for
-    reading.
+    You can play Kosmic Hunters or check out its source code visiting the links below. Thank you for reading.
 </p>
