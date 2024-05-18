@@ -17,6 +17,8 @@
     --hyperlink-color: rgb(35, 102, 64);
     --border-radius: 10px;
 
+    --zoom-background-color: rgba(0, 0, 0, 0.25);
+    
     --button-color: rgba(255, 255, 255, 0.5);
     --button-hover-color: rgba(255, 255, 255, 0.66);
     --button-active-color: rgba(255, 255, 255, 0.75);
@@ -171,9 +173,8 @@ a:active {
 }
 
 .container {
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(320px, 100%), 1fr));
     gap: var(--gap-size);
 }
 
@@ -182,7 +183,6 @@ a:active {
     background-color: var(--button-color);
     display: flex;
     flex-flow: column;
-    flex-basis: calc(50% - (var(--gap-size) / 2));
 
     cursor: pointer;
     border-radius: var(--border-radius);
@@ -305,6 +305,17 @@ a:active {
     width: 100%;
 }
 
+.details-media-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(240px, 100%), 1fr));
+    gap: var(--gap-size);
+}
+
+.details-media-grid > * {
+    width: 100%;
+    border-radius: var(--border-radius);
+}
+
 .zoomable {
     cursor: pointer;
 }
@@ -319,7 +330,7 @@ a:active {
     right: 0;
     top: 0;
     bottom: 0;
-    background-color: rgba(1, 1, 1, 0.25);
+    background-color: var(--zoom-background-color);
     backdrop-filter: blur(8px);
 }
 
@@ -333,7 +344,7 @@ a:active {
     bottom: 0;
     max-height: 90%;
     max-width: 90%;
-    border-radius: 10px;
+    border-radius: var(--border-radius);
 }
 
 .button-card {
@@ -387,10 +398,6 @@ a:active {
         align-self: center;
     }
     
-    .container {
-        flex-flow: column;
-    }
-    
     .overview-info {
         flex-flow: column-reverse;
     }
@@ -400,5 +407,12 @@ a:active {
 
     .side-by-side {
         flex-flow: column;
+    }
+}
+
+@media only screen and (max-width: 420px) {
+    .card-header {
+        flex-flow: column-reverse;
+        gap: var(--gap-size); 
     }
 }
