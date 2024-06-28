@@ -1,0 +1,152 @@
+<p>
+    Shrunk is a game made with the raylib library and written entirely in C. In this game, a random melody, following a diatonic scale, is played every play session. This game uses simple shapes and text to drive its gameplay, and the sound provides feedback and gratification to the player.
+</p>
+<p>
+    I chose to include only Ionian, Dorian, Mixolydian and Locrian modes, as I consider their generated melodies fit the calm and simplistic atmosphere of Shrunk.
+</p>
+<h2>Features</h2>
+<p>
+    <ul>
+        <li><span class="emphasis-text">Sound pool implementation:</span> A system to let Raylib play the same sound over itself without interrupting the first one;</li>
+        <li><span class="emphasis-text">Random melody algorithm:</span> An algorithm created and tested to provide randomized, but musically competent, feedback in every play session.</li>
+    </ul>
+</p>
+
+<h2>Sound Pool</h2>
+<p>
+    The raylib audio library's <span class="code-text">PlaySound</span> function plays a single sound. If the function is called while the loaded sound is already playing, it interrupts the first and starts playing the sound from the start, acting like a "channel".
+</p>
+<p>
+    My goal with this game was to play a sound every time the player hits the target, making a natural melody. Because Raylib doesn't provide simple functions to play sounds in multiple channels, I've implemented a sound pool system, where multiple instances of a sound can be loaded at once and be played without interrupting sounds being played at the moment.
+</p>
+<p>
+    To that effect, I've implemented a fixed size circular array. The <span class="code-text">SoundPool</span> struct maintains the last played index so that when a sound has to be played, it can get an available "channel" and call the <span class="code-text">PlaySound</span> function using its reference.
+</p>
+<pre class="code-block">
+#define SOUNDPOOL_LENGTH 8
+
+typedef struct {
+    Sound sounds[SOUNDPOOL_LENGTH];
+    int lastPlayed;
+} SoundPool;
+
+void SoundPool_PlaySound(SoundPool* self, float pitch) {
+    // Get available index from the circular array
+    self->lastPlayed++;
+    if (self->lastPlayed > SOUNDPOOL_LENGTH - 1) {
+        self->lastPlayed = 0;
+    }
+    int availableIndex = self->lastPlayed;
+
+    // Play sound
+    Sound sound = self->sounds[availableIndex];
+    SetSoundPitch(sound, pitch);
+    PlaySound(sound);
+}
+</pre>
+<p>
+    Above, an excerpt of SoundPool's PlaySound code. The circular array behavior and how data is laid out. 
+</p>
+<h2>Random Melody</h2>
+<p>
+    My goal with the game audio was to not only generate random tones and play them sequentially, but to generate a melody that would make sense inside a musical scale. My code needed an abstraction to stop using tones as they ultimately are, pitch shifted sounds, and have the possibility of calling notes by their names and even travel along musical scales.
+</p>
+<p>
+    By pitch shifting kalimba sounds playing the C note from 3 octaves (to reduce volume & quality loss caused by pitch shifting), I could represent all notes from C4 to C7. The <span class="code-text">InitNotes</span> function calculates the right pitch for every note using the relationship 2<sup>n/12</sup>, where n = number of semitones above the reference (C), and stores all pitches inside a <span class="code-text">notes</span> array.
+</p>
+<p>
+    Having that, I also needed to represent different musical scales (modes) like Ionian, Dorian, etc. The <span class="code-text">InitModes</span> populates a <span class="code-text">modes</span> matrix with all correct pitches in order with the structure: 
+</p>
+<table>
+    <thead>
+        <tr>
+            <th>mode\index</th>
+            <th>0</th>
+            <th>1</th>
+            <th>2</th>
+            <th>3</th>
+            <th>4</th>
+            <th>5</th>
+            <th>6</th>
+            <th>...</th>
+            <th>21</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>0 (ionian)</td>
+            <td>1.000</td>
+            <td>1.122</td>
+            <td>1.260</td>
+            <td>1.335</td>
+            <td>1.498</td>
+            <td>1.682</td>
+            <td>1.888</td>
+            <td>...</td>
+            <td>2.000</td>
+        </tr>
+        <tr>
+            <td>1 (dorian)</td>
+            <td>1.000</td>
+            <td>1.122</td>
+            <td>1.189</td>
+            <td>1.335</td>
+            <td>1.498</td>
+            <td>1.682</td>
+            <td>1.782</td>
+            <td>...</td>
+            <td>2.000</td>
+        </tr>
+        <tr>
+            <td>2 (mixolydian)</td>
+            <td>1.000</td>
+            <td>1.122</td>
+            <td>1.260</td>
+            <td>1.335</td>
+            <td>1.498</td>
+            <td>1.682</td>
+            <td>1.782</td>
+            <td>...</td>
+            <td>2.000</td>
+        </tr>
+        <tr>
+            <td>3 (locrian)</td>
+            <td>1.000</td>
+            <td>1.059</td>
+            <td>1.189</td>
+            <td>1.335</td>
+            <td>1.414</td>
+            <td>1.587</td>
+            <td>1.782</td>
+            <td>...</td>
+            <td>2.000</td>
+        </tr>
+    </tbody>
+</table>
+<p>
+    Where 1.0 at column 0 reffer to C4 (pitch shift the C4 octave multiplying by 1.0) and 2.0 at column 21 represents C7 (pitch shift the C6 octave multiplying by 2.0).
+</p>
+<p>
+    Using the stored notes, the melody is generated on the spot. The <span class="code-text">GenerateNote</span> function is called every time the player hits the target successfully, returning a new Note, forming a sequence. To have a sense of conclusion and predictable satisfation, the last notes returned are always the last notes on the current musical scale.
+</p>
+<p>
+    The algorithm increases two semitones or decreases one semitone depending on which random value is generated, but as my objective was to also generate a satisfying note "curve", I also used an EaseIn curve and EaseOut curve to determine the min and max note value, generating a value beetween those boundaries. 
+</p>
+<div class="details-media side-by-side">
+    <img class="zoomable" src="projects/shrunk/media/test.png" />
+    <img class="zoomable" src="projects/shrunk/media/stress test.png" />
+</div>
+<p>
+    Generated melodies start from the same note, diverge at the middle creating different melodies and converge at the end within the boundaries. 
+</p>
+<p>
+    The sound of the generally ascending notes serves as musical background but also as an immediate feedback to the player's progress, which can ultimately end in the satisfactory melody conclusion, or in a musical cliffhanger, encouraging the player to retry just one more time.
+</p>
+<div class="details-media">
+    <video controls>
+        <source src="projects/shrunk/media/demo.mp4" type="video/mp4">
+    </video>
+</div>
+<p>
+    You can play Shrunk or check out its source code visiting the links below.
+</p>

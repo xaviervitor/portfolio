@@ -34,7 +34,7 @@ function setGameInfo() {
     spanTitle.innerHTML = projects[projectIndex].title;
     spanSummary.innerHTML = projects[projectIndex].summary;
     spanPlatforms.innerHTML = projects[projectIndex].platforms;
-    spanTools.innerHTML = projects[projectIndex].tools;
+    spanTools.innerHTML = projects[projectIndex].tools.join(", ");
     spanRole.innerHTML = projects[projectIndex].role;
     spanDuration.innerHTML = projects[projectIndex].duration;
     spanRelease.innerHTML = projects[projectIndex].releaseDate;

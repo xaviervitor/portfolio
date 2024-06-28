@@ -1,9 +1,10 @@
+const olderProjectsLength = 2;
 const projects = [
     {
         "title" : "Kosmic Hunters",
         "summary" : "A multiplayer FPS featuring alien and human characters, built with the Unreal Engine.",
         "platforms" : "Windows",
-        "tools" : "Unreal Engine, C++, Blueprint",
+        "tools" : ["Unreal Engine", "C++", "Blueprint"],
         "role" : "Programming, Level Design, Environment Art, some 3D Modeling",
         "duration" : "6 months",
         "imagePaths" : [
@@ -29,7 +30,7 @@ const projects = [
         "title" : "OpenGL Renderer",
         "summary" : "An OpenGL graphics renderer using the <span class='accent-text'>LearnOpenGL book by JoeyDeVries</span> as a guide.",
         "platforms" : "Windows",
-        "tools" : "OpenGL, C++",
+        "tools" : ["OpenGL", "C++"],
         "role" : "Programming",
         "duration" : "1 month",
         "imagePaths" : [
@@ -48,10 +49,36 @@ const projects = [
         "releaseDate" : "04/09/2023",
     },
     {
+        "title" : "Shrunk",
+        "summary" : "A game made with the raylib library and written entirely in C.",
+        "platforms" : "Windows",
+        "tools" : ["Raylib", "C"],
+        "role" : "Programming",
+        "duration" : "1 month",
+        "imagePaths" : [
+            "projects/shrunk/slides/1.png",
+            "projects/shrunk/slides/2.png",
+            "projects/shrunk/slides/3.png",
+            "projects/shrunk/slides/4.png",
+        ],
+        "links" : [
+            {
+                "href" : "https://vitassos.itch.io/shrunk",
+                "image" : "icons/itchio-badge.png",
+            },
+            {
+                "href" : "https://github.com/xaviervitor/shrunk",
+                "image" : "icons/github.png",
+            },
+        ],
+        "details" : "projects/shrunk/details-body.html",
+        "releaseDate" : "04/07/2023",
+    },
+    {
         "title" : "Piratas",
         "summary" : "A top-down pirate themed arcade shooter where you control a ship and destroy other pirate ships.",
         "platforms" : "Windows, Web",
-        "tools" : "Unity Engine, C#",
+        "tools" : ["Unity Engine", "C#"],
         "role" : "Programming, Artist",
         "duration" : "2 months",
         "imagePaths" : [
@@ -74,9 +101,9 @@ const projects = [
     },
     {
         "title" : "Biomagnetic",
-        "summary" : "A First-Person Puzzle game about using magnetism using your hand to remotely control objects.",
+        "summary" : "A First-Person Puzzle game about using magnetism with a newfound bracelet to remotely control objects.",
         "platforms" : "Windows",
-        "tools" : "Unity Engine, C#",
+        "tools" : ["Unity Engine", "C#"],
         "role" : "Programming, Level Design, Environment Art",
         "duration" : "3 months",
         "imagePaths" : [
@@ -103,7 +130,7 @@ const projects = [
         "title" : "Godot Chess",
         "summary" : "A chess game made from scratch using the Godot game engine.",
         "platforms" : "Web",
-        "tools" : "Godot Engine, GDScript",
+        "tools" : ["Godot Engine", "GDScript"],
         "role" : "Programming, 2D Art",
         "duration" : "2 months",
         "imagePaths" : [
@@ -127,7 +154,7 @@ const projects = [
         "title" : "Minejsweeper",
         "summary" : "A minesweeper clone written in Javascript, HTML and CSS only.",
         "platforms" : "Web",
-        "tools" : "HTML, CSS, JavaScript",
+        "tools" : ["HTML", "CSS", "JavaScript"],
         "role" : "Programming, SVG Art",
         "duration" : "2 months",
         "imagePaths" : [
