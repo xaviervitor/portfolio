@@ -31,7 +31,7 @@
 body {
     background: var(--background-color);
 
-    background-image: url(images/background.png);
+    background-image: url(images/foreground.png), url(images/background.png);
     background-position: center center;
     background-attachment: scroll;
     image-rendering: crisp-edges;
