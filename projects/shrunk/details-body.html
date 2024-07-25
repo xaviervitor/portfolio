@@ -45,7 +45,7 @@ void SoundPool_PlaySound(SoundPool* self, float pitch) {
 }
 </pre>
 <p>
-    Above, an excerpt of SoundPool's PlaySound code. The circular array behavior and how data is laid out. 
+    Above, an excerpt of SoundPool's PlaySound code. The circular array behavior and how data is laid out.
 </p>
 <h2>Random Melody</h2>
 <p>
@@ -55,7 +55,7 @@ void SoundPool_PlaySound(SoundPool* self, float pitch) {
     By pitch shifting kalimba sounds playing the C note from 3 octaves (to reduce volume & quality loss caused by pitch shifting), I could represent all notes from C4 to C7. The <span class="code-text">InitNotes</span> function calculates the right pitch for every note using the relationship 2<sup>n/12</sup>, where n = number of semitones above the reference (C), and stores all pitches inside a <span class="code-text">notes</span> array.
 </p>
 <p>
-    Having that, I also needed to represent different musical scales (modes) like Ionian, Dorian, etc. The <span class="code-text">InitModes</span> populates a <span class="code-text">modes</span> matrix with all correct pitches in order with the structure: 
+    Having that, I also needed to represent different musical scales (modes) like Ionian, Dorian, etc. The <span class="code-text">InitModes</span> populates a <span class="code-text">modes</span> matrix with all correct pitches in order with the structure:
 </p>
 <table>
     <thead>
@@ -130,14 +130,14 @@ void SoundPool_PlaySound(SoundPool* self, float pitch) {
     Using the stored notes, the melody is generated on the spot. The <span class="code-text">GenerateNote</span> function is called every time the player hits the target successfully, returning a new Note, forming a sequence. To have a sense of conclusion and predictable satisfation, the last notes returned are always the last notes on the current musical scale.
 </p>
 <p>
-    The algorithm increases two semitones or decreases one semitone depending on which random value is generated, but as my objective was to also generate a satisfying note "curve", I also used an EaseIn curve and EaseOut curve to determine the min and max note value, generating a value beetween those boundaries. 
+    The algorithm increases two semitones or decreases one semitone depending on which random value is generated, but as my objective was to also generate a satisfying note "curve", I also used an EaseIn curve and EaseOut curve to determine the min and max note value, generating a value beetween those boundaries.
 </p>
 <div class="details-media side-by-side">
     <img class="zoomable" src="projects/shrunk/media/test.png" />
     <img class="zoomable" src="projects/shrunk/media/stress test.png" />
 </div>
 <p>
-    Generated melodies start from the same note, diverge at the middle creating different melodies and converge at the end within the boundaries. 
+    Generated melodies start from the same note, diverge at the middle creating different melodies and converge at the end within the boundaries.
 </p>
 <p>
     The sound of the generally ascending notes serves as musical background but also as an immediate feedback to the player's progress, which can ultimately end in the satisfactory melody conclusion, or in a musical cliffhanger, encouraging the player to retry just one more time.

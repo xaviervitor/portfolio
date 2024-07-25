@@ -19,7 +19,7 @@ function onLoad() {
     projectIndex = url.searchParams.get("project");
 
     document.title = projects[projectIndex].title;
-    
+
     setGameInfo();
 }
 
@@ -44,20 +44,20 @@ function setGameInfo() {
     const imagePathsArray = projects[projectIndex].imagePaths;
     for (let i = 0 ; i < imagePathsArray.length ; i++) {
         const imagePath = imagePathsArray[i];
-        
+
         const image = document.createElement("img");
         image.src = imagePath;
         divSlideShow.appendChild(image);
     }
 
     const linksArray = projects[projectIndex].links;
-    
+
     for (let i = 0 ; i < spanLinksList.length ; i++) {
         const spanLinks = spanLinksList[i];
-        
+
         for (let i = 0 ; i < linksArray.length ; i++) {
             const link = linksArray[i];
-            
+
             const anchor = document.createElement("a");
             anchor.href = link.href;
             const image = document.createElement("img");

@@ -20,7 +20,7 @@
     --border-radius: 10px;
 
     --zoom-background-color: rgba(0, 0, 0, 0.25);
-    
+
     --button-color: rgba(255, 255, 255, 0.5);
     --button-hover-color: rgba(255, 255, 255, 0.66);
     --button-active-color: rgba(255, 255, 255, 0.75);
@@ -39,7 +39,7 @@ body {
     font-family: "Titillium Web", sans-serif;
     font-weight: 400;
     font-style: normal;
-    
+
     color: var(--text-color);
 }
 
@@ -55,18 +55,18 @@ a {
 a:link {
     color: var(--hyperlink-color);
 }
-  
+
 a:visited {
     color: var(--hyperlink-color);
 }
-  
+
 a:hover {
     text-decoration: underline;
 }
-  
+
 a:active {
     color: var(--hyperlink-color);
-} 
+}
 
 ::selection {
     background-color: var(--selected-text-color);
@@ -141,11 +141,11 @@ a:active {
 .code-block {
     max-width: fit-content;
     background: var(--text-background-color);
-    
+
     display: block;
     overflow: scroll;
     scrollbar-width: thin;
-    
+
     font-family: "Inconsolata", monospace;
     font-weight: 400;
     font-style: normal;
@@ -508,17 +508,17 @@ table td:nth-child(1) {
     ul {
         padding-left: var(--gap-size);
     }
-    
+
     .profile {
         flex-flow: column;
     }
 
     .profile img {
-        margin-top: var(--gap-size); 
+        margin-top: var(--gap-size);
         border-radius: var(--border-radius);
         align-self: center;
     }
-    
+
     .overview-info {
         flex-flow: column-reverse;
     }
@@ -533,7 +533,7 @@ table td:nth-child(1) {
     .item-small-img {
         display: none;
     }
-    
+
     .item-small-aside {
         display: none;
     }
@@ -542,6 +542,6 @@ table td:nth-child(1) {
 @media only screen and (max-width: 420px) {
     .card-header {
         flex-flow: column-reverse;
-        gap: var(--gap-size); 
+        gap: var(--gap-size);
     }
 }
