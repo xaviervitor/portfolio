@@ -144,6 +144,7 @@ a:active {
     
     display: block;
     overflow: scroll;
+    scrollbar-width: thin;
     
     font-family: "Inconsolata", monospace;
     font-weight: 400;
@@ -466,6 +467,7 @@ a:active {
 table {
     display: block;
     overflow: scroll;
+    scrollbar-width: thin;
     border-collapse: collapse;
     text-align: start;
     font-family: "Inconsolata", monospace;
