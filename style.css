@@ -9,11 +9,11 @@
     --medium-text-size: 22px;
     --large-text-size: 28px;
     --gap-size: 16px;
-    --background-color: rgb(37, 73, 40);
     --selected-text-color: rgba(35, 102, 64, 0.25);
 
     --card-color: rgba(255, 255, 255, 0.5);
     --title-color: rgb(0, 0, 0);
+    --strong-text-color: rgb(0, 0, 0);
     --text-color: rgb(64, 64, 64);
     --text-background-color: rgb(37, 73, 40, 0.125);
     --hyperlink-color: rgb(35, 102, 64);
@@ -29,8 +29,6 @@
 /* Global styles */
 
 body {
-    background: var(--background-color);
-
     background-image: url(images/foreground.png), url(images/background.png);
     background-position: center center;
     background-attachment: scroll;
@@ -115,7 +113,7 @@ a:active {
 }
 
 .strong-text {
-    color: black;
+    color: var(--strong-text-color);
     font-weight: 700;
 }
 
@@ -250,7 +248,6 @@ a:active {
 .slide-show {
     aspect-ratio: 16/9;
     width: 100%;
-    background-color: black;
     overflow: hidden;
 }
 
