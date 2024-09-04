@@ -1,5 +1,5 @@
 const olderProjectsLength = 2;
-const projects = [
+const projectList = [
     {
         "title" : "Kosmic Hunters",
         "summary" : "A multiplayer FPS featuring alien and human characters, built with the Unreal Engine.",
@@ -177,3 +177,5 @@ const projects = [
         "releaseDate" : "16/04/2021",
     },
 ]
+
+export { olderProjectsLength, projectList };

@@ -1,4 +1,5 @@
 let activeSlideShow;
+let timeoutID;
 
 function initSlideShow(slideShow, slideShowIndex, slideIndex) {
     activeSlideShow = null;
@@ -35,3 +36,5 @@ function resetSlide() {
     activeSlideShow.children[0].style.display = "block";
     activeSlideShow.slideIndex = 0;
 }
+
+export { initSlideShow };

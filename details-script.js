@@ -1,3 +1,7 @@
+import * as Projects from "./modules/projects.js";
+import * as SlideShow from "./modules/slideshow.js";
+import * as Zoom from "./modules/zoom.js";
+
 let projectIndex;
 
 const spanTitle = document.getElementById("span-title");
@@ -18,17 +22,17 @@ function onLoad() {
     var url = new URL(window.location.href);
     projectIndex = url.searchParams.get("project");
 
-    document.title = projects[projectIndex].title;
-
     setGameInfo();
 }
 
 function setGameInfo() {
+    const projects = Projects.projectList;
+    document.title = projects[projectIndex].title;
     fetch(projects[projectIndex].details)
     .then((response) => response.text())
     .then((text) => {
         divDetails.innerHTML = text;
-        setupZoomableImages();
+        Zoom.setupImagesZoom(document.getElementsByClassName("zoomable"));
     });
 
     spanTitle.innerHTML = projects[projectIndex].title;
@@ -39,7 +43,7 @@ function setGameInfo() {
     spanDuration.innerHTML = projects[projectIndex].duration;
     spanRelease.innerHTML = projects[projectIndex].releaseDate;
 
-    initSlideShow(divSlideShow, 0, 0);
+    SlideShow.initSlideShow(divSlideShow, 0, 0);
 
     const imagePathsArray = projects[projectIndex].imagePaths;
     for (let i = 0 ; i < imagePathsArray.length ; i++) {

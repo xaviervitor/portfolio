@@ -1,4 +1,5 @@
-let timeoutID;
+import * as Projects from "./modules/projects.js";
+import * as SlideShow from "./modules/slideshow.js";
 
 const projectsContainer = document.getElementById("projects-container");
 const olderProjectsContainer = document.getElementById("older-projects-container");
@@ -6,17 +7,17 @@ const olderProjectsContainer = document.getElementById("older-projects-container
 document.body.onload = onLoad;
 
 function onLoad() {
-    for (let i = 0; i < projects.length - olderProjectsLength; i++) {
+    for (let i = 0; i < Projects.projectList.length - Projects.olderProjectsLength; i++) {
         appendProjects(i, projectsContainer);
     }
 
-    for (let i = projects.length - olderProjectsLength ; i < projects.length ; i++) {
+    for (let i = Projects.projectList.length - Projects.olderProjectsLength ; i < Projects.projectList.length ; i++) {
         appendOlderProjects(i, olderProjectsContainer);
     }
 }
 
 function appendProjects(projectIndex, container) {
-    const project = projects[projectIndex];
+    const project = Projects.projectList[projectIndex];
 
     const article = document.createElement("a");
     article.classList.add("item");
@@ -27,7 +28,7 @@ function appendProjects(projectIndex, container) {
     const slideShow = document.createElement("div");
     slideShow.classList.add("slide-show");
 
-    initSlideShow(slideShow, projectIndex, 0);
+    SlideShow.initSlideShow(slideShow, projectIndex, 0);
 
     const imagePathsArray = project.imagePaths;
     for (let i = 0 ; i < imagePathsArray.length ; i++) {
@@ -98,7 +99,7 @@ function appendProjects(projectIndex, container) {
 }
 
 function appendOlderProjects(projectIndex, container) {
-    const project = projects[projectIndex];
+    const project = Projects.projectList[projectIndex];
 
     const article = document.createElement("a");
     let url = new URL("portfolio/details.html", window.location.origin);
