@@ -22,30 +22,36 @@ function onLoad() {
     var url = new URL(window.location.href);
     projectIndex = url.searchParams.get("project");
 
-    setGameInfo();
+    const projects = Projects.projectList;
+    const project = projects[projectIndex];
+    if (!project) {
+        window.location.replace("porfolio/no-project.html");
+        return;
+    }
+
+    setGameInfo(project);
 }
 
-function setGameInfo() {
-    const projects = Projects.projectList;
-    document.title = projects[projectIndex].title;
-    fetch(projects[projectIndex].details)
-    .then((response) => response.text())
-    .then((text) => {
-        divDetails.innerHTML = text;
-        Zoom.setupImagesZoom(document.getElementsByClassName("zoomable"));
-    });
+function setGameInfo(project) {
+    document.title = project.title;
+    
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', project.details, false);
+    xhr.send();
+    divDetails.innerHTML = xhr.responseText;
+    Zoom.setupImagesZoom(document.getElementsByClassName("zoomable"));
 
-    spanTitle.innerHTML = projects[projectIndex].title;
-    spanSummary.innerHTML = projects[projectIndex].summary;
-    spanPlatforms.innerHTML = projects[projectIndex].platforms;
-    spanTools.innerHTML = projects[projectIndex].tools.join(", ");
-    spanRole.innerHTML = projects[projectIndex].role;
-    spanDuration.innerHTML = projects[projectIndex].duration;
-    spanRelease.innerHTML = projects[projectIndex].releaseDate;
+    spanTitle.innerHTML = project.title;
+    spanSummary.innerHTML = project.summary;
+    spanPlatforms.innerHTML = project.platforms;
+    spanTools.innerHTML = project.tools.join(", ");
+    spanRole.innerHTML = project.role;
+    spanDuration.innerHTML = project.duration;
+    spanRelease.innerHTML = project.releaseDate;
 
     SlideShow.initSlideShow(divSlideShow, 0, 0);
 
-    const imagePathsArray = projects[projectIndex].imagePaths;
+    const imagePathsArray = project.imagePaths;
     for (let i = 0 ; i < imagePathsArray.length ; i++) {
         const imagePath = imagePathsArray[i];
 
@@ -54,7 +60,7 @@ function setGameInfo() {
         divSlideShow.appendChild(image);
     }
 
-    const linksArray = projects[projectIndex].links;
+    const linksArray = project.links;
 
     for (let i = 0 ; i < spanLinksList.length ; i++) {
         const spanLinks = spanLinksList[i];
